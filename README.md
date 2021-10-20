@@ -1,85 +1,48 @@
-# lslidar_n301
+## Describe
+	**This version only verifies the Single line n301 radar**
+	**The driver is developed with ros1, and supports running under Ubuntu 14.04, Ubuntu 16.04, and Ubuntu 18.04**
 
-## Description
-The `lslidar_n301` package is a linux ROS driver for lslidar n301.
-The package is tested on Ubuntu 14.04 with ROS indigo.
-
-## Compling
-This is a Catkin package. Make sure the package is on `ROS_PACKAGE_PATH` after cloning the package to your workspace. And the normal procedure for compling a catkin package will work.
-
+## Set up the workspace
 ```
-cd your_work_space
-catkin_make 
+mkdir -p ~/lidar_ws/src
+cd ~/lidar_ws/src
+tar –xvf lidar_n301_V2.01.tar
 ```
 
-## Example Usage
-
-### lslidar_n301_driver
-
-**Parameters**
-
-`device_ip` (`string`, `default: 192.168.1.222`)
-
-By default, the IP address of the device is 192.168.1.222.
-
-`frame_id` (`string`, `default: lslidar`)
-
-The frame ID entry for the sent messages.
-
-**Published Topics**
-
-`lslidar_packets` (`lslidar_n301_msgs/LslidarN301Packet`)
-
-Each message corresponds to a lslidar packet sent by the device through the Ethernet.
-
-### lslidar_n301_decoder
-
-**Parameters**
-
-`min_range` (`double`, `0.3`)
-
-`max_range` (`double`, `100.0`)
-
-Points outside this range will be removed.
-
-`frequency` (`frequency`, `20.0`)
-
-Note that the driver does not change the frequency of the sensor. 
-
-`publish_point_cloud` (`bool`, `false`)
-
-If set to true, the decoder will additionally send out a local point cloud consisting of the points in each revolution.
-
-**Published Topics**
-
-`lslidar_sweep` (`lslidar_n301_msgs/LslidarN301Sweep`)
-
-The message arranges the points within each sweep based on its scan index and azimuth.
-
-`lslidar_point_cloud` (`sensor_msgs/PointCloud2`)
-
-This is only published when the `publish_point_cloud` is set to `true` in the launch file.
-
-**Node**
-
+## Compile and package
 ```
-roslaunch lslidar_n301_decoder lslidar_n301.launch
+cd ~/lidar_ws
+catkin_make
 ```
 
-Note that this launch file launches both the driver and the decoder, which is the only launch file needed to be used.
-
-
-## FAQ
-
-
-## Bug Report
-
-Prefer to open an issue. You can also send an E-mail to shaohuashu@lslidar.com
+## Run
+```
+source ~/lidar_ws /devel/setup.bash
+roslaunch lidar_n301_decoder lidar_n301.launch
+```
 
 
 
+## lidar_n301.launch Configuration file description: 
+~~~xml
+	<arg name="device_ip" default="192.168.1.206" />	//Set to the corresponding IP of radar
+	<arg name="device_port" default="2366" />	//The port corresponding to the data packet
+	<param name="frame_id" value="laser_link"/>	//Set the name of the fixed frame in rviz
+	<param name="add_multicast" value="false"/>	//false means Turn off multicast
+	<param name="group_ip" value="224.1.1.2"/>	//Multicast IP settings
+	<param name="min_range" value="0.15"/>	//Points less than 0.15 meters are not displayed
+	<param name="max_range" value="150.0"/>	//Points greater than 150 meters are not displayed
+	<param name="angle_disable_min" value="100"/>	//Points from 100 to 300 degrees are not displayed
+	<param name="angle_disable_max" value="300"/>
+	<param name="use_gps_ts" default="false" />	//False means to use the local time of the computer, and true means to use the GPS time
+	<param name="gps_correct" value="true"/>	//False means that GPS time correction is not turned on, and true means that GPS time correction is turned on
+    <param name="publish_point_cloud" value="true"/>	//False means that pointcloud point cloud is not displayed, and true means that pointcloud point cloud is displayed
+    <param name="filter_scan_point" value="true"/>	//True means to filter a circle of redundant points, false means not to filter
+~~~
 
-RERTION 
-V0.1 2000 points per circle
-v0.2 1000 points per circle
+
+
+
+
+
 
