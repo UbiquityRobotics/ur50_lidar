@@ -9,10 +9,11 @@ This is a Catkin package. Make sure the package is on `ROS_PACKAGE_PATH` after c
 
 ```
 cd your_work_space
-catkin_make 
-```
+catkin_make lslidar_n301
+catkin_make lslidar_n301_driver
+catkin_make lslidar_n301_decoder
 
-## Example Usage
+You must modify the ethernet connection (see section on adding lidar in breadcrumb_learn.)
 
 ### lslidar_n301_driver
 
