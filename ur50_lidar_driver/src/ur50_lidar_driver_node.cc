@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 
 #include <ros/ros.h>
-#include <lslidar_n301_driver/lslidar_n301_driver.h>
+#include <ur50_lidar_driver/ur50_lidar_driver.h>
 
 volatile sig_atomic_t flag = 1;
 
@@ -27,14 +27,14 @@ static void my_handler(int sig)
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "lslidar_n301_driver_node");
+    ros::init(argc, argv, "ur50_lidar_driver_node");
     ros::NodeHandle node;
     ros::NodeHandle private_nh("~");
 	
 	signal(SIGINT, my_handler);
 	
     // start the driver
-    lslidar_n301_driver::LslidarN301Driver driver(node, private_nh);
+    ur50_lidar_driver::LslidarN301Driver driver(node, private_nh);
   if (!driver.initialize()) {
     ROS_ERROR("Cannot initialize lslidar driver...");
     return 0;

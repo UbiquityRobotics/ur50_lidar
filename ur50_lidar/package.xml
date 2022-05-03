@@ -1,6 +1,6 @@
 <package>
 
-  <name>lslidar_n301</name>
+  <name>ur50_lidar</name>
   <version>1.2.0</version>
   <description>
     Basic ROS support for the Leishen N301 LIDARs.
@@ -11,9 +11,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>lslidar_n301_driver</run_depend>
-  <run_depend>lslidar_n301_msgs</run_depend>
-  <run_depend>lslidar_n301_decoder</run_depend>
+  <run_depend>ur50_lidar_driver</run_depend>
+  <run_depend>ur50_lidar_msgs</run_depend>
+  <run_depend>ur50_lidar_decoder</run_depend>
 
   <export>
     <metapackage/>

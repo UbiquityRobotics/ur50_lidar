@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
 
-  <name>lslidar_n301_decoder</name>
+  <name>ur50_lidar_decoder</name>
   <version>1.2.0</version>
   <description>
     Point cloud conversions for Leishen N301 LIDARs.
@@ -21,6 +21,6 @@
   <depend>libpcl-all-dev</depend>
   <depend>libpcl-all</depend>
 
-  <depend>lslidar_n301_msgs</depend>
+  <depend>ur50_lidar_msgs</depend>
 
 </package>

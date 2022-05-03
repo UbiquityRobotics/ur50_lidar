@@ -50,7 +50,7 @@
 <arg name="devPort12" value="2391" />
 
 <group ns="Lidar1">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP1)"/>
     <param name="msop_port" value="$(arg msop_port1)" />
@@ -60,7 +60,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_1)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -76,7 +76,7 @@
 </group>  
 
 <group ns="Lidar2">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP2)"/>
     <param name="msop_port" value="$(arg msop_port2)" />
@@ -86,7 +86,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_2)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -103,7 +103,7 @@
 </group>  
 
 <group ns="Lidar3">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP3)"/>
     <param name="msop_port" value="$(arg msop_port3)" />
@@ -113,7 +113,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_3)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -130,7 +130,7 @@
 </group>  
 
 <group ns="Lidar4">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP4)"/>
     <param name="msop_port" value="$(arg msop_port4)" />
@@ -140,7 +140,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_4)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -157,7 +157,7 @@
 </group>  
 
 <group ns="Lidar5">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP5)"/>
     <param name="msop_port" value="$(arg msop_port5)" />
@@ -167,7 +167,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_5)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -184,7 +184,7 @@
 </group>  
 
 <group ns="Lidar6">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP6)"/>
     <param name="msop_port" value="$(arg msop_port6)" />
@@ -194,7 +194,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_6)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -211,7 +211,7 @@
 </group>  
 
 <group ns="Lidar7">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP7)"/>
     <param name="msop_port" value="$(arg msop_port7)" />
@@ -221,7 +221,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_7)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -238,7 +238,7 @@
 </group>  
 
 <group ns="Lidar8">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP8)"/>
     <param name="msop_port" value="$(arg msop_port8)" />
@@ -248,7 +248,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_8)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -265,7 +265,7 @@
 </group>  
 
 <group ns="Lidar9">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP9)"/>
     <param name="msop_port" value="$(arg msop_port9)" />
@@ -275,7 +275,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_9)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -292,7 +292,7 @@
 </group>  
 
 <group ns="Lidar10">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP10)"/>
     <param name="msop_port" value="$(arg msop_port10)" />
@@ -302,7 +302,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_10)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -319,7 +319,7 @@
 </group>  
 
 <group ns="Lidar11">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP11)"/>
     <param name="msop_port" value="$(arg msop_port11)" />
@@ -329,7 +329,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_11)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -346,7 +346,7 @@
 </group> 
 
 <group ns="Lidar12">
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen" launch-prefix="xterm -e">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen" launch-prefix="xterm -e">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="$(arg devIP12)"/>
     <param name="msop_port" value="$(arg msop_port12)" />
@@ -356,7 +356,7 @@
     <param name="lidar_serial_number" value="$(arg lidar_serial_number_12)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>

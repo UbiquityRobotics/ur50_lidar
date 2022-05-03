@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #include <diagnostic_updater/diagnostic_updater.h>
 #include <diagnostic_updater/publisher.h>
 
-#include <lslidar_n301_msgs/LslidarN301Packet.h>
+#include <ur50_lidar_msgs/LslidarN301Packet.h>
 #include <std_msgs/Byte.h>
 #include <std_msgs/String.h>
 #include <signal.h>
@@ -37,7 +37,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>	
 
-namespace lslidar_n301_driver {
+namespace ur50_lidar_driver {
 
 //static uint16_t UDP_PORT_NUMBER = 8080;
 static uint16_t PACKET_SIZE = 1206;
@@ -63,8 +63,8 @@ private:
     bool loadParameters();
     bool createRosIO();
     bool openUDPPort();
-    int getPacket(lslidar_n301_msgs::LslidarN301PacketPtr& msg);
-	int getDifopPacket(lslidar_n301_msgs::LslidarN301PacketPtr& msg);
+    int getPacket(ur50_lidar_msgs::LslidarN301PacketPtr& msg);
+	int getDifopPacket(ur50_lidar_msgs::LslidarN301PacketPtr& msg);
 	bool SendPacketToLidar(bool power_switch);
 	
     // Ethernet relate variables

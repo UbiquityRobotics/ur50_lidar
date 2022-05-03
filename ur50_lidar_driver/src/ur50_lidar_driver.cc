@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,11 +28,11 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
-#include <lslidar_n301_driver/lslidar_n301_driver.h>
+#include <ur50_lidar_driver/ur50_lidar_driver.h>
 
 extern volatile sig_atomic_t flag;
 
-namespace lslidar_n301_driver {
+namespace ur50_lidar_driver {
 
 LslidarN301Driver::LslidarN301Driver(
         ros::NodeHandle& n, ros::NodeHandle& pn):
@@ -89,12 +89,12 @@ bool LslidarN301Driver::createRosIO() {
 						 TimeStampStatusParam()));
 
 	// Output
-	packet_pub = nh.advertise<lslidar_n301_msgs::LslidarN301Packet>(
+	packet_pub = nh.advertise<ur50_lidar_msgs::LslidarN301Packet>(
 			"lslidar_packet", 100);
 		
 	//std::string output_difop_topic;
 	//pnh.param("output_difop_topic", output_difop_topic, std::string("lslidar_packet_difop"));
-	difop_output_ = nh.advertise<lslidar_n301_msgs::LslidarN301Packet>("lslidar_packet_difop", 100);
+	difop_output_ = nh.advertise<ur50_lidar_msgs::LslidarN301Packet>("lslidar_packet_difop", 100);
 	
 	serial_thread = boost::shared_ptr<boost::thread>(new boost::thread(boost::bind(&LslidarN301Driver::serialPoll, this)));
 	
@@ -193,7 +193,7 @@ bool LslidarN301Driver::initialize() {
     return true;
 }
 
-int LslidarN301Driver::getDifopPacket(lslidar_n301_msgs::LslidarN301PacketPtr& packet) {
+int LslidarN301Driver::getDifopPacket(ur50_lidar_msgs::LslidarN301PacketPtr& packet) {
     double time1 = ros::Time::now().toSec();
 
     struct pollfd fds[1];
@@ -257,7 +257,7 @@ int LslidarN301Driver::getDifopPacket(lslidar_n301_msgs::LslidarN301PacketPtr& p
     return 0;
 }
 
-int LslidarN301Driver::getPacket( lslidar_n301_msgs::LslidarN301PacketPtr& packet) {
+int LslidarN301Driver::getPacket( ur50_lidar_msgs::LslidarN301PacketPtr& packet) {
 
     double time1 = ros::Time::now().toSec();
 
@@ -359,8 +359,8 @@ int LslidarN301Driver::getPacket( lslidar_n301_msgs::LslidarN301PacketPtr& packe
 bool LslidarN301Driver::polling()
 {
     // Allocate a new shared pointer for zero-copy sharing with other nodelets.
-    lslidar_n301_msgs::LslidarN301PacketPtr packet(
-                new lslidar_n301_msgs::LslidarN301Packet());
+    ur50_lidar_msgs::LslidarN301PacketPtr packet(
+                new ur50_lidar_msgs::LslidarN301Packet());
 				
 	std_msgs::Byte msg;
 	struct timeval tv;
@@ -443,8 +443,8 @@ bool LslidarN301Driver::polling()
 void LslidarN301Driver::difopPoll()
 {
     // reading and publishing scans as fast as possible.
-	lslidar_n301_msgs::LslidarN301PacketPtr packets(
-                new lslidar_n301_msgs::LslidarN301Packet());
+	ur50_lidar_msgs::LslidarN301PacketPtr packets(
+                new ur50_lidar_msgs::LslidarN301Packet());
 				
     while (ros::ok())
     {

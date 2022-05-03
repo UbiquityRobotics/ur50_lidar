@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,11 +15,11 @@
  * along with the driver.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <lslidar_n301_decoder/lslidar_n301_decoder.h>
+#include <ur50_lidar_decoder/ur50_lidar_decoder.h>
 
 using namespace std;
 
-namespace lslidar_n301_decoder {
+namespace ur50_lidar_decoder {
 LslidarN301Decoder::LslidarN301Decoder(
         ros::NodeHandle& n, ros::NodeHandle& pn):
     nh(n),
@@ -35,7 +35,7 @@ LslidarN301Decoder::LslidarN301Decoder(
 	error_time(0),
 	correct_time(0),
 	scan_size(16),
-    sweep_data(new lslidar_n301_msgs::LslidarN301Sweep()){
+    sweep_data(new ur50_lidar_msgs::LslidarN301Sweep()){
     return;
 }
 
@@ -61,15 +61,15 @@ bool LslidarN301Decoder::loadParameters() {
 bool LslidarN301Decoder::createRosIO() {
 	type_sub = nh.subscribe("agreement_type", 100, &LslidarN301Decoder::TypeReceive, this);
 	difop_sub_ = nh.subscribe("lslidar_packet_difop", 10, &LslidarN301Decoder::processDifop, (LslidarN301Decoder*)this);
-    packet_sub = nh.subscribe<lslidar_n301_msgs::LslidarN301Packet>(
+    packet_sub = nh.subscribe<ur50_lidar_msgs::LslidarN301Packet>(
                 "lslidar_packet", 100, &LslidarN301Decoder::packetCallback, this, ros::TransportHints().tcpNoDelay(true));
-    sweep_pub = nh.advertise<lslidar_n301_msgs::LslidarN301Sweep>(
+    sweep_pub = nh.advertise<ur50_lidar_msgs::LslidarN301Sweep>(
                 "lslidar_sweep", 10);
     point_cloud_pub = nh.advertise<sensor_msgs::PointCloud2>(
                 "lslidar_point_cloud", 10);
     scan_pub = nh.advertise<sensor_msgs::LaserScan>(
                 "scan", 100);
-	device_pub = nh.advertise<lslidar_n301_msgs::LslidarN301Difop>(
+	device_pub = nh.advertise<ur50_lidar_msgs::LslidarN301Difop>(
                 "difop_information", 100);
 
     return true;
@@ -120,12 +120,12 @@ void LslidarN301Decoder::TypeReceive(
 			}
 }
 
-void LslidarN301Decoder::processDifop(const lslidar_n301_msgs::LslidarN301Packet::ConstPtr& difop_msg)
+void LslidarN301Decoder::processDifop(const ur50_lidar_msgs::LslidarN301Packet::ConstPtr& difop_msg)
 {
 	  const uint8_t* data = &difop_msg->data[0];
 	  
-	  Difop_data = lslidar_n301_msgs::LslidarN301DifopPtr(
-							new lslidar_n301_msgs::LslidarN301Difop());
+	  Difop_data = ur50_lidar_msgs::LslidarN301DifopPtr(
+							new ur50_lidar_msgs::LslidarN301Difop());
 							
 	  // check header
 	  if (data[0] != 0xa5 || data[1] != 0xff || data[2] != 0x00 || data[3] != 0x5a)
@@ -174,7 +174,7 @@ void LslidarN301Decoder::publishPointCloud() {
     point_cloud->height = 1;
 		
     for (size_t i = 0; i < scan_size; ++i) {
-        const lslidar_n301_msgs::LslidarN301Scan& scan = sweep_data->scans[i];
+        const ur50_lidar_msgs::LslidarN301Scan& scan = sweep_data->scans[i];
         // The first and last point in each scan is ignored, which
         // seems to be corrupted based on the received data.
         // TODO: The two end points should be removed directly
@@ -417,7 +417,7 @@ void LslidarN301Decoder::decodePacket(const RawPacket* packet) {
 }
 
 void LslidarN301Decoder::packetCallback(
-        const lslidar_n301_msgs::LslidarN301PacketConstPtr& msg) {
+        const ur50_lidar_msgs::LslidarN301PacketConstPtr& msg) {
 
     // Convert the msg to the raw packet type.
     const RawPacket* raw_packet = (const RawPacket*) (&(msg->data[0]));
@@ -470,8 +470,8 @@ void LslidarN301Decoder::packetCallback(
 	
 	if (end_fir_idx != FIRINGS_PER_PACKET || last_azimuth > 2*M_PI - 1)
 	{
-		sweep_data1 = lslidar_n301_msgs::LslidarN301SweepPtr(
-							new lslidar_n301_msgs::LslidarN301Sweep());
+		sweep_data1 = ur50_lidar_msgs::LslidarN301SweepPtr(
+							new ur50_lidar_msgs::LslidarN301Sweep());
 	}
 	
     for (size_t fir_idx = start_packet; fir_idx < end_packet; ++fir_idx) {
@@ -501,13 +501,13 @@ void LslidarN301Decoder::packetCallback(
             // Remap the index of the scan
             int remapped_scan_idx = scan_idx%2 == 0 ? scan_idx/2 : scan_idx/2+8;
 			
-		    //lslidar_n301_msgs::LslidarN301Point& new_point;
+		    //ur50_lidar_msgs::LslidarN301Point& new_point;
 			if ((end_fir_idx != FIRINGS_PER_PACKET || last_azimuth > 2*M_PI - 1)&& firings[fir_idx].azimuth[scan_idx] < M_PI )
 			{
 					sweep_data1->scans[remapped_scan_idx].points.push_back(
-                        lslidar_n301_msgs::LslidarN301Point());
+                        ur50_lidar_msgs::LslidarN301Point());
 						
-					lslidar_n301_msgs::LslidarN301Point& new_point =		// new_point 为push_back最后一个的引用
+					ur50_lidar_msgs::LslidarN301Point& new_point =		// new_point 为push_back最后一个的引用
 						sweep_data1->scans[remapped_scan_idx].points[
 						sweep_data1->scans[remapped_scan_idx].points.size()-1];
 						
@@ -523,9 +523,9 @@ void LslidarN301Decoder::packetCallback(
 			else
 			{
 					sweep_data->scans[remapped_scan_idx].points.push_back(
-								lslidar_n301_msgs::LslidarN301Point());
+								ur50_lidar_msgs::LslidarN301Point());
 
-					lslidar_n301_msgs::LslidarN301Point& new_point =		// new_point 为push_back最后一个的引用
+					ur50_lidar_msgs::LslidarN301Point& new_point =		// new_point 为push_back最后一个的引用
 							sweep_data->scans[remapped_scan_idx].points[
 							sweep_data->scans[remapped_scan_idx].points.size()-1];
 							
@@ -620,8 +620,8 @@ void LslidarN301Decoder::packetCallback(
 		
         publishScan();
 			
-        sweep_data = lslidar_n301_msgs::LslidarN301SweepPtr(
-                    new lslidar_n301_msgs::LslidarN301Sweep());
+        sweep_data = ur50_lidar_msgs::LslidarN301SweepPtr(
+                    new ur50_lidar_msgs::LslidarN301Sweep());
 					
 		sweep_data = sweep_data1;
         // Prepare the next revolution
@@ -671,8 +671,8 @@ void LslidarN301Decoder::packetCallback(
                 // Remap the index of the scan
                 int remapped_scan_idx = scan_idx%2 == 0 ? scan_idx/2 : scan_idx/2+8;
                 sweep_data->scans[remapped_scan_idx].points.push_back(
-                            lslidar_n301_msgs::LslidarN301Point());
-                lslidar_n301_msgs::LslidarN301Point& new_point =
+                            ur50_lidar_msgs::LslidarN301Point());
+                ur50_lidar_msgs::LslidarN301Point& new_point =
                         sweep_data->scans[remapped_scan_idx].points[
                         sweep_data->scans[remapped_scan_idx].points.size()-1];
 
@@ -692,5 +692,5 @@ void LslidarN301Decoder::packetCallback(
     return;
 }
 
-} // end namespace lslidar_n301_decoder
+} // end namespace ur50_lidar_decoder
 

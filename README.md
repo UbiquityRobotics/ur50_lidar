@@ -1,7 +1,7 @@
-# lslidar_n301
+# ur50_lidar_driver
 
 ## Description
-The `lslidar_n301` package is a linux ROS driver for lslidar n301.
+The `ur50_lidar_driver` package is a linux ROS driver for the LS-N301.
 The package is tested on Ubuntu 20.04 with ROS Noetic.
 
 ## Compling
@@ -14,7 +14,7 @@ catkin_make
 
 ## Example Usage
 
-### lslidar_n301_driver
+### ur50_lidar_driver
 
 **Parameters**
 
@@ -28,11 +28,11 @@ The frame ID entry for the sent messages.
 
 **Published Topics**
 
-`lslidar_packets` (`lslidar_n301_msgs/LslidarN301Packet`)
+`lslidar_packets` (`ur50_lidar_msgs/LslidarN301Packet`)
 
 Each message corresponds to a lslidar packet sent by the device through the Ethernet.
 
-### lslidar_n301_decoder
+### ur50_lidar_decoder
 
 **Parameters**
 
@@ -52,7 +52,7 @@ If set to true, the decoder will additionally send out a local point cloud consi
 
 **Published Topics**
 
-`lslidar_sweep` (`lslidar_n301_msgs/LslidarN301Sweep`)
+`lslidar_sweep` (`ur50_lidar_msgs/LslidarN301Sweep`)
 
 The message arranges the points within each sweep based on its scan index and azimuth.
 
@@ -63,7 +63,7 @@ This is only published when the `publish_point_cloud` is set to `true` in the la
 **Node**
 
 ```
-roslaunch lslidar_n301_decoder lslidar_n301.launch
+roslaunch ur50_lidar_decoder ur50_lidar.launch
 ```
 
 Note that this launch file launches both the driver and the decoder, which is the only launch file needed to be used.

@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,14 @@
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
 
-#include <lslidar_n301_msgs/LslidarN301Packet.h>
-#include <lslidar_n301_msgs/LslidarN301Difop.h>
-#include <lslidar_n301_msgs/LslidarN301Point.h>
-#include <lslidar_n301_msgs/LslidarN301Scan.h>
-#include <lslidar_n301_msgs/LslidarN301Sweep.h>
+#include <ur50_lidar_msgs/LslidarN301Packet.h>
+#include <ur50_lidar_msgs/LslidarN301Difop.h>
+#include <ur50_lidar_msgs/LslidarN301Point.h>
+#include <ur50_lidar_msgs/LslidarN301Scan.h>
+#include <ur50_lidar_msgs/LslidarN301Sweep.h>
 #include <std_msgs/Byte.h>
 
-namespace lslidar_n301_decoder {
+namespace ur50_lidar_decoder {
 
 // Raw lslidar packet constants and structures.
 static const int SIZE_BLOCK      = 100;
@@ -177,8 +177,8 @@ private:
     // Callback function for a single lslidar packet.
     bool checkPacketValidity(const RawPacket* packet);
     void decodePacket(const RawPacket* packet);
-    void packetCallback(const lslidar_n301_msgs::LslidarN301PacketConstPtr& msg);
-	void processDifop(const lslidar_n301_msgs::LslidarN301Packet::ConstPtr& difop_msg);
+    void packetCallback(const ur50_lidar_msgs::LslidarN301PacketConstPtr& msg);
+	void processDifop(const ur50_lidar_msgs::LslidarN301Packet::ConstPtr& difop_msg);
 	void TypeReceive(const std_msgs::Byte::ConstPtr& msg);
 	
     // Publish data
@@ -249,9 +249,9 @@ private:
     std::string fixed_frame_id;
     std::string child_frame_id;
 
-    lslidar_n301_msgs::LslidarN301SweepPtr sweep_data;
-	lslidar_n301_msgs::LslidarN301SweepPtr sweep_data1;
-	lslidar_n301_msgs::LslidarN301DifopPtr Difop_data;
+    ur50_lidar_msgs::LslidarN301SweepPtr sweep_data;
+	ur50_lidar_msgs::LslidarN301SweepPtr sweep_data1;
+	ur50_lidar_msgs::LslidarN301DifopPtr Difop_data;
     sensor_msgs::PointCloud2 point_cloud_data;
 
     ros::Subscriber packet_sub;
@@ -268,9 +268,9 @@ typedef LslidarN301Decoder::LslidarN301DecoderConstPtr LslidarN301DecoderConstPt
 typedef PointXYZIT VPoint;
 typedef pcl::PointCloud<VPoint> VPointCloud;
 
-} // end namespace lslidar_n301_decoder
+} // end namespace ur50_lidar_decoder
 
-POINT_CLOUD_REGISTER_POINT_STRUCT(lslidar_n301_decoder::PointXYZIT,
+POINT_CLOUD_REGISTER_POINT_STRUCT(ur50_lidar_decoder::PointXYZIT,
                                   (float, x, x)(float, y, y)(float, z, z)(
                                           std::uint8_t, intensity,
                                           intensity)(double, timestamp, timestamp))

@@ -1,6 +1,6 @@
 <launch>
 
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen">
     <param name="frame_id" value="laser_link"/>
     <param name="device_ip" value="192.168.1.222"/>
     <param name="msop_port" value="2368"/>
@@ -9,7 +9,7 @@
     <param name="group_ip" value="224.1.1.2"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="laser_link"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
@@ -23,6 +23,6 @@
     <param name="filter_scan_point" value="true"/>
   </node>
   
-  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find lslidar_n301_decoder)/launch/lslidar_n301.rviz" output="screen"/-->
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur50_lidar_decoder)/launch/ur50_lidar.rviz" output="screen"/-->
 
 </launch>

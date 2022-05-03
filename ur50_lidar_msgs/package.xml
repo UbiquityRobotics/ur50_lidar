@@ -1,6 +1,6 @@
 <package>
 
-  <name>lslidar_n301_msgs</name>
+  <name>ur50_lidar_msgs</name>
   <version>1.2.0</version>
   <description>
     ROS message definitions for Leishen N301 LIDARs.

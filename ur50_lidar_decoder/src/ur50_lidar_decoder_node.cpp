@@ -1,5 +1,5 @@
 /*
- * This file is part of lslidar_n301 driver.
+ * This file is part of ur50_lidar driver.
  *
  * The driver is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
 
 #include <ros/ros.h>
 
-#include <lslidar_n301_decoder/lslidar_n301_decoder.h>
+#include <ur50_lidar_decoder/ur50_lidar_decoder.h>
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "lslidar_n301_decoder_node");
+    ros::init(argc, argv, "ur50_lidar_decoder_node");
     ros::NodeHandle nh;
     ros::NodeHandle pnh("~");
 
-    lslidar_n301_decoder::LslidarN301DecoderPtr decoder(
-                new lslidar_n301_decoder::LslidarN301Decoder(nh, pnh));
+    ur50_lidar_decoder::LslidarN301DecoderPtr decoder(
+                new ur50_lidar_decoder::LslidarN301Decoder(nh, pnh));
 
     if (!decoder->initialize()) {
         ROS_INFO("Cannot initialize the decoder...");

@@ -6,13 +6,13 @@
   <arg name="start_angle" default="0" />
   <arg name="end_angle" default="360" />
 
-  <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" output="screen">
+  <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen">
     <param name="frame_id" value="$(arg laser_link)"/>
     <param name="device_ip" value="$(arg device_IP)"/>
     <param name="device_port" value="$(arg device_Port)"/>
   </node>
 
-  <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" output="screen">
+  <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
     <param name="child_frame_id" value="$(arg laser_link)"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="$(arg start_angle)"/>

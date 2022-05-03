@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(lslidar_n301_driver)
+project(ur50_lidar_driver)
 
 add_compile_options(-std=c++14)
 set( CMAKE_CXX_STANDARD 14)
@@ -9,17 +9,17 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   diagnostic_updater
   nodelet
-  lslidar_n301_msgs
+  ur50_lidar_msgs
 )
 
 find_package(Boost REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
-#  LIBRARIES lslidar_n301_driver
+#  LIBRARIES ur50_lidar_driver
   CATKIN_DEPENDS
     roscpp diagnostic_updater nodelet
-    lslidar_n301_msgs
+    ur50_lidar_msgs
   DEPENDS
     boost
 )
@@ -35,32 +35,32 @@ link_directories(
 )
 
 # Leishen n301 lidar driver
-add_library(lslidar_n301_driver
-  src/lslidar_n301_driver.cc
+add_library(ur50_lidar_driver
+  src/ur50_lidar_driver.cc
 )
-target_link_libraries(lslidar_n301_driver
+target_link_libraries(ur50_lidar_driver
   ${catkin_LIBRARIES}
 )
-add_dependencies(lslidar_n301_driver
+add_dependencies(ur50_lidar_driver
   ${${PROJECT_NAME}_EXPORTED_TARGETS}
   ${catkin_EXPORTED_TARGETS}
 )
 
 # Leishen n301 lidar nodelet
-add_executable(lslidar_n301_driver_node
-  src/lslidar_n301_driver_node.cc
+add_executable(ur50_lidar_driver_node
+  src/ur50_lidar_driver_node.cc
 )
-target_link_libraries(lslidar_n301_driver_node
-  lslidar_n301_driver
+target_link_libraries(ur50_lidar_driver_node
+  ur50_lidar_driver
   ${catkin_LIBRARIES}
 )
-add_dependencies(lslidar_n301_driver_node
+add_dependencies(ur50_lidar_driver_node
   ${${PROJECT_NAME}_EXPORTED_TARGETS}
   ${catkin_EXPORTED_TARGETS}
 )
 
 # install options
-install(TARGETS lslidar_n301_driver_node
+install(TARGETS ur50_lidar_driver_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
