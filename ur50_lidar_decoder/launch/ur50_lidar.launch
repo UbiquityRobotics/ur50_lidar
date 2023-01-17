@@ -1,8 +1,8 @@
 <launch>
 
   <node pkg="ur50_lidar_driver" type="ur50_lidar_driver_node" name="ur50_lidar_driver_node" output="screen">
-    <param name="frame_id" value="laser_link"/>
-    <param name="device_ip" value="192.168.1.222"/>
+    <param name="frame_id" value="laser"/>
+    <param name="device_ip" value="192.168.42.222"/>
     <param name="msop_port" value="2368"/>
     <param name="difop_port" value="2369"/>
     <param name="add_multicast" value="false"/>
@@ -10,7 +10,7 @@
   </node>
 
   <node pkg="ur50_lidar_decoder" type="ur50_lidar_decoder_node" name="ur50_lidar_decoder_node" output="screen">
-    <param name="child_frame_id" value="laser_link"/>
+    <param name="child_frame_id" value="laser"/>
     <param name="point_num" value="2000"/>
     <param name="start_angle" value="0"/>
     <param name="end_angle" value="360"/>
